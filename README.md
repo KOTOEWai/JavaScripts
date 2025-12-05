@@ -3,10 +3,6 @@
 - [LexicalStructure](#LexicalStructure)
 - [Expressions](#Expressions)
 - [DataTypes](#DataTypes)
-- [Usage](#usage)
-- [API](#api)
-- [Contributing](#contributing)
-- [License](#license)
 
 
 ## LexicalStructure
