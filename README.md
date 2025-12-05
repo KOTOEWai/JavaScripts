@@ -3,6 +3,7 @@
 - [LexicalStructure](#LexicalStructure)
 - [Expressions](#Expressions)
 - [DataTypes](#DataTypes)
+- [Variables](#Variables)
 
 
 ## LexicalStructure
