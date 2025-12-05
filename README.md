@@ -2,7 +2,7 @@
 ## 📑 Table of Contents
 - [LexicalStructure](#LexicalStructure)
 - [Expressions](#Expressions)
-- [Installation](#installation)
+- [DataTypes](#DataTypes)
 - [Usage](#usage)
 - [API](#api)
 - [Contributing](#contributing)
@@ -281,7 +281,7 @@ Understanding these rules helps you write cleaner and more predictable JavaScrip
 
 JavaScript **expressions** are pieces of code that produce a value. They are the building blocks of statements and logic in JavaScript.
 
-This README covers all major types of expressions with clear explanations and examples.
+
 
 ---
 
@@ -588,4 +588,305 @@ JavaScript expressions:
 Understanding expressions helps you write more powerful and flexible code.
 
 ---
+
+# DataTypes
+
+JavaScript has a flexible and dynamic type system. Every value in JavaScript belongs to a **data type**, and understanding them is essential for writing clean, predictable code.
+
+---
+
+## 1. Overview of Data Types
+
+JavaScript has **8 main data types**:
+
+### **Primitive Data Types** (7 types)
+
+1. **Number**
+2. **String**
+3. **Boolean**
+4. **Undefined**
+5. **Null**
+6. **Symbol**
+7. **BigInt**
+
+### **Non‑Primitive Data Type** (1 type)
+
+8. **Object**
+
+---
+
+# 2. Primitive Data Types
+
+Primitive values:
+
+* are **immutable**
+* compared by **value**
+* stored directly in memory
+
+---
+
+## 2.1 Number
+
+Represents both integers and floating‑point numbers.
+
+```js
+let age = 18;
+let price = 19.99;
+let infinity = Infinity;
+let notNumber = NaN;
+```
+
+JavaScript does **not** have separate types for int, float, double.
+
+---
+
+## 2.2 String
+
+Represents text.
+
+```js
+let name = "Aye";
+let message = 'Hello';
+let greeting = `Hi ${name}`; // template literal
+```
+
+---
+
+## 2.3 Boolean
+
+Represents logical values.
+
+```js
+let isLoggedIn = true;
+let hasToken = false;
+```
+
+Common Boolean operations:
+
+```js
+true && false
+true || false
+!true
+```
+
+---
+
+## 2.4 Undefined
+
+A variable that has been declared but not assigned.
+
+```js
+let x;
+console.log(x); // undefined
+```
+
+---
+
+## 2.5 Null
+
+Represents an **intentional absence of value**.
+
+```js
+let user = null;
+```
+
+Note:
+
+```js
+typeof null; // "object" (JS historical bug)
+```
+
+---
+
+## 2.6 Symbol (ES6)
+
+Unique and immutable values, often used as object keys.
+
+```js
+let id = Symbol("id");
+let obj = {
+  [id]: 123,
+};
+```
+
+---
+
+## 2.7 BigInt (ES2020)
+
+Used for very large integers.
+
+```js
+let big = 12345678901234567890n;
+let sum = big + 10n;
+```
+
+BigInts cannot mix with normal numbers:
+
+```js
+10 + 10n; // ❌ error
+```
+
+---
+
+# 3. Non‑Primitive Data Type
+
+## 3.1 Object
+
+Objects store key‑value pairs.
+
+```js
+let user = {
+  name: "Aye",
+  age: 20,
+};
+```
+
+Objects include:
+
+* arrays
+* functions
+* dates
+* regex
+* maps
+* sets
+
+Everything that is **not primitive** is an **object**.
+
+---
+
+# 4. Special Object Types
+
+## 4.1 Array
+
+Ordered list of values.
+
+```js
+let arr = [1, 2, 3];
+```
+
+---
+
+## 4.2 Function
+
+Functions are objects with callable behavior.
+
+```js
+function greet() {
+  return "Hello";
+}
+```
+
+---
+
+## 4.3 Date
+
+Represents date and time.
+
+```js
+let now = new Date();
+```
+
+---
+
+## 4.4 Map
+
+Stores key‑value pairs with any key type.
+
+```js
+let map = new Map();
+map.set("name", "Aye");
+```
+
+---
+
+## 4.5 Set
+
+Stores unique values.
+
+```js
+let set = new Set([1, 2, 2, 3]); // {1,2,3}
+```
+
+---
+
+# 5. Dynamic Typing
+
+JavaScript is **dynamically typed**, meaning variables can change type at runtime.
+
+```js
+let x = 10;
+x = "ten";
+```
+
+---
+
+# 6. Type Checking
+
+### typeof operator
+
+```js
+typeof 10;        // "number"
+typeof "hi";     // "string"
+typeof true;      // "boolean"
+typeof undefined; // "undefined"
+typeof null;      // "object" (bug)
+typeof {};        // "object"
+typeof [];        // "object"
+typeof function(){}; // "function"
+```
+
+---
+
+# 7. Difference Between Primitive & Object
+
+| Feature     | Primitive            | Object                |
+| ----------- | -------------------- | --------------------- |
+| Storage     | Value                | Reference             |
+| Mutable?    | No                   | Yes                   |
+| Compared by | Value                | Reference             |
+| Examples    | `10`, `"hi"`, `true` | `{}`, `[]`, functions |
+
+Example:
+
+```js
+let a = { x: 1 };
+let b = { x: 1 };
+a === b; // false (different references)
+```
+
+---
+
+# 8. Type Conversion
+
+### Implicit Conversion (Coercion)
+
+```js
+"5" - 1  // 4
+"5" + 1  // "51"
+```
+
+### Explicit Conversion
+
+```js
+Number("5")
+String(123)
+Boolean(1)
+```
+
+---
+
+# Summary
+
+JavaScript data types include:
+
+* **7 primitive types**: Number, String, Boolean, Undefined, Null, Symbol, BigInt
+* **1 non‑primitive type**: Object
+* JavaScript is **dynamically typed**
+* Primitive values are simple and immutable
+* Objects are complex and mutable
+
+Understanding data types helps prevent bugs and write cleaner, more predictable code.
+
+---
+
 
