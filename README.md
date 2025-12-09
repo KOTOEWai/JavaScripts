@@ -5,6 +5,7 @@
 - [DataTypes](#DataTypes)
 - [Variables](#Variables)
 - [Operators](#Operators)
+- [Conditions](#Conditions )
 
 
 ## LexicalStructure
@@ -1340,17 +1341,17 @@ console.log(user.address?.street); // undefined, no error
 ## **12. Bitwise Operators**
 
 Advanced topic — used for low-level operations.
-
-| Operator | Meaning               |    |
-| -------- | --------------------- | -- |
-| `&`      | AND                   |    |
-| `        | `                     | OR |
-| `^`      | XOR                   |    |
-| `~`      | NOT                   |    |
-| `<<`     | Left shift            |    |
-| `>>`     | Right shift           |    |
-| `>>>`    | Zero-fill right shift |    |
-
+```js
+| Operator | Meaning               |    
+| -------- | --------------------- | 
+| `&`      | AND                   |    
+|  ||      | OR                    |  
+| `^`      | XOR                   |    
+| `~`      | NOT                   |    
+| `<<`     | Left shift            |    
+| `>>`     | Right shift           |    
+| `>>>`    | Zero-fill right shift |    
+```
 ---
 
 ## **13. Operator Precedence (Which Runs First?)**
@@ -1375,5 +1376,281 @@ Shortcut:
 
 
 
+
+
+# Conditions 
+
+A complete guide to how decisions are made in JavaScript — using `if`, `else`, `switch`, ternary, truthy/falsy, and more.
+
+---
+
+## **1. What Are Conditions?**
+
+Conditions allow JavaScript to make decisions based on **true/false** results.
+
+Example:
+
+```js
+let age = 18;
+if (age >= 18) {
+  console.log("You are an adult");
+}
+```
+
+---
+
+## **2. Types of Conditional Statements**
+
+JavaScript supports:
+
+1. `if` statement
+2. `if...else` statement
+3. `else if` chain
+4. `switch` statement
+5. Ternary operator (`? :`)
+6. `&&` and `||` short‑circuit conditions
+7. Optional chaining (`?.`) with conditions
+
+---
+
+## **3. The `if` Statement**
+
+Runs code only when the condition is **true**.
+
+```js
+if (condition) {
+  // code
+}
+```
+
+Example:
+
+```js
+let score = 80;
+if (score > 50) {
+  console.log("Pass");
+}
+```
+
+---
+
+## **4. `if...else` Statement**
+
+Runs one block if true, another if false.
+
+```js
+if (condition) {
+  // true block
+} else {
+  // false block
+}
+```
+
+Example:
+
+```js
+let isOnline = false;
+if (isOnline) {
+  console.log("User is online");
+} else {
+  console.log("User is offline");
+}
+```
+
+---
+
+## **5. `else if` Chain**
+
+Checks multiple conditions one by one.
+
+```js
+if (temperature > 30) {
+  console.log("Hot");
+} else if (temperature > 20) {
+  console.log("Warm");
+} else {
+  console.log("Cold");
+}
+```
+
+---
+
+## **6. `switch` Statement**
+
+Used when checking one value against many possible cases.
+
+```js
+switch (day) {
+  case "Mon":
+    console.log("Work day");
+    break;
+  case "Sat":
+  case "Sun":
+    console.log("Weekend");
+    break;
+  default:
+    console.log("Unknown day");
+}
+```
+
+### Why use `switch`?
+
+* Cleaner when many `else if` conditions
+* Great for checking a single variable
+
+---
+
+## **7. Ternary Operator (`? :`)**
+
+Short version of `if...else`.
+
+```js
+condition ? valueIfTrue : valueIfFalse;
+```
+
+Example:
+
+```js
+let age = 18;
+let message = age >= 18 ? "Adult" : "Minor";
+console.log(message);
+```
+
+Best used for simple decisions.
+
+---
+
+## **8. Truthy and Falsy Values**
+
+JavaScript treats some values as **true** or **false** automatically.
+
+### Falsy values:
+
+* `false`
+* `0`
+* `""` (empty string)
+* `null`
+* `undefined`
+* `NaN`
+
+Everything else is **truthy**.
+
+Example:
+
+```js
+if ("") console.log("This won't run");
+if ("hello") console.log("This will run");
+```
+
+---
+
+## **9. Logical Operators in Conditions**
+
+### `&&` (AND)
+
+Runs only if both conditions are true.
+
+```js
+if (isLoggedIn && isAdmin) {
+  console.log("Welcome Admin");
+}
+```
+
+### `||` (OR)
+
+Runs if at least one condition is true.
+
+```js
+if (day === "Sat" || day === "Sun") {
+  console.log("Weekend");
+}
+```
+
+### `!` (NOT)
+
+Reverses a boolean.
+
+```js
+if (!isOnline) {
+  console.log("Offline");
+}
+```
+
+---
+
+## **10. Optional Chaining in Conditions (`?.`)**
+
+Avoids errors when checking nested properties.
+
+```js
+if (user?.address?.city) {
+  console.log("City found");
+}
+```
+
+---
+
+## **11. Combining Multiple Conditions**
+
+Example:
+
+```js
+let age = 20;
+let hasID = true;
+
+if (age >= 18 && hasID) {
+  console.log("You may enter");
+}
+```
+
+---
+
+## **12. Common Mistakes**
+
+### Using `=` instead of `==` or `===`
+
+```js
+if (x = 5) { } // WRONG
+```
+
+This assigns, not compares.
+
+Correct:
+
+```js
+if (x === 5) { }
+```
+
+### Forgetting `break` in switch
+
+```js
+switch(x) {
+  case 1:
+    console.log("One");
+  case 2:
+    console.log("Two"); // Both run ❌
+}
+```
+
+---
+
+## **13. Summary**
+
+Use conditions to:
+
+* Make decisions
+* Control program flow
+* Validate data
+* React to user input
+
+Tools for conditions:
+
+* `if`, `else`, `else if`
+* `switch`
+* Ternary operator
+* Logical operators
+* Truthy/falsy evaluation
+
+---
 
 
