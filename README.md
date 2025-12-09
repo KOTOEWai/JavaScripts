@@ -1032,7 +1032,11 @@ console.log(globalVar); // Accessible here
 
 ## 7. Hoisting
 
-Hoisting means declarations are moved to the top of their scope.
+Hoisting ဆိုတာ
+➡️ JavaScript engine က code run မလုပ်ခင်
+➡️ variable declarations (var, let, const)
+➡️ function declarations
+တွေကို memory ထဲကို အရင် ထားသွားတဲ့ behavior ကို ဆိုလိုတာပါ။
 
 ### `var` is hoisted with **undefined** value:
 
@@ -1144,3 +1148,240 @@ JavaScript variables:
 Understanding variables helps you control data flow and avoid bugs.
 
 ---
+
+
+
+# JavaScript Operators
+
+
+## **1. What Are Operators?**
+
+Operators are symbols that tell JavaScript to perform some action (calculations, comparisons, assignments, logic, etc.).
+
+Example:
+
+```js
+let x = 10 + 5;
+```
+
+Here:
+
+* `=` is an **assignment operator**
+* `+` is an **arithmetic operator**
+
+---
+
+## **2. Types of Operators**
+
+JavaScript has several categories of operators:
+
+1. **Arithmetic Operators**
+2. **Assignment Operators**
+3. **Comparison Operators**
+4. **Logical Operators**
+5. **Unary Operators**
+6. **Ternary Operator**
+7. **String Operators**
+8. **Bitwise Operators**
+9. **Type Operators** (`typeof`, `instanceof`)
+10. **Optional Chaining & Nullish Coalescing Operators**
+
+---
+
+## **3. Arithmetic Operators**
+
+| Operator | Name                | Example        |
+| -------- | ------------------- | -------------- |
+| `+`      | Addition            | `5 + 2` → `7`  |
+| `-`      | Subtraction         | `5 - 2` → `3`  |
+| `*`      | Multiplication      | `5 * 2` → `10` |
+| `/`      | Division            | `10 / 2` → `5` |
+| `%`      | Modulus (remainder) | `5 % 2` → `1`  |
+| `**`     | Exponentiation      | `2 ** 3` → `8` |
+| `++`     | Increment           | `x++`          |
+| `--`     | Decrement           | `x--`          |
+
+Example:
+
+```js
+let a = 10;
+a++;
+console.log(a); // 11
+```
+
+---
+
+## **4. Assignment Operators**
+
+| Operator | Meaning             | Example              |
+| -------- | ------------------- | -------------------- |
+| `=`      | Assign              | `x = 10`             |
+| `+=`     | Add and assign      | `x += 5` (x = x + 5) |
+| `-=`     | Subtract and assign | `x -= 5`             |
+| `*=`     | Multiply and assign | `x *= 5`             |
+| `/=`     | Divide and assign   | `x /= 5`             |
+| `%=`     | Modulus and assign  | `x %= 5`             |
+| `**=`    | Power and assign    | `x **= 2`            |
+
+---
+
+## **5. Comparison Operators**
+
+These return **true** or **false**.
+
+| Operator | Meaning          | Example             |
+| -------- | ---------------- | ------------------- |
+| `==`     | Equal (loose)    | `5 == "5"` → true   |
+| `===`    | Strict equal     | `5 === "5"` → false |
+| `!=`     | Not equal        | `5 != 3`            |
+| `!==`    | Strict not equal | `5 !== "5"`         |
+| `>`      | Greater than     | `10 > 5`            |
+| `<`      | Less than        | `5 < 10`            |
+| `>=`     | Greater or equal | `10 >= 10`          |
+| `<=`     | Less or equal    | `5 <= 5`            |
+
+Example:
+
+```js
+console.log(5 === "5"); // false
+```
+
+---
+
+## **6. Logical Operators**
+
+| Operator | Meaning | Example                   |    |       |   |               |
+| -------- | ------- | ------------------------- | -- | ----- | - | ------------- |
+| `&&`     | AND     | `true && false` → `false` |    |       |   |               |
+| `        |         | `                         | OR | `true |   | false`→`true` |
+| `!`      | NOT     | `!true` → `false`         |    |       |   |               |
+
+Example:
+
+```js
+let isLoggedIn = true;
+let isAdmin = false;
+console.log(isLoggedIn && isAdmin); // false
+```
+
+---
+
+## **7. Unary Operators**
+
+| Operator | Meaning                         |
+| -------- | ------------------------------- |
+| `typeof` | Returns data type               |
+| `void`   | Evaluates but returns undefined |
+| `delete` | Removes object property         |
+| `+`      | Convert to number               |
+| `-`      | Convert to negative number      |
+
+Example:
+
+```js
+console.log(typeof 123); // "number"
+```
+
+---
+
+## **8. Ternary Operator** (Conditional Operator)
+
+Shorthand for `if/else`.
+
+```js
+condition ? valueIfTrue : valueIfFalse;
+```
+
+Example:
+
+```js
+let age = 18;
+let msg = age >= 18 ? "Adult" : "Minor";
+console.log(msg);
+```
+
+---
+
+## **9. String Operator**
+
+The `+` operator is used for string concatenation.
+
+```js
+let name = "Toe" + "Wai";
+console.log(name); // "ToeWai"
+```
+
+---
+
+## **10. Nullish Coalescing Operator (`??`)**
+
+Returns the right-hand value when the left side is `null` or `undefined`.
+
+```js
+let user;
+console.log(user ?? "Guest"); // Guest
+```
+
+---
+
+## **11. Optional Chaining Operator (`?.`)**
+
+Avoids errors when accessing properties of `undefined` or `null`.
+
+```js
+let user = {};
+console.log(user.address?.street); // undefined, no error
+```
+
+---
+
+## **12. Bitwise Operators**
+
+Advanced topic — used for low-level operations.
+
+| Operator | Meaning               |    |
+| -------- | --------------------- | -- |
+| `&`      | AND                   |    |
+| `        | `                     | OR |
+| `^`      | XOR                   |    |
+| `~`      | NOT                   |    |
+| `<<`     | Left shift            |    |
+| `>>`     | Right shift           |    |
+| `>>>`    | Zero-fill right shift |    |
+
+---
+
+## **13. Operator Precedence (Which Runs First?)**
+
+Example:
+
+```js
+2 + 3 * 4; // 14 (because * runs before +)
+```
+
+Shortcut:
+
+* `()` parentheses highest
+* Then unary (`!`, `typeof`)
+* Then `* / %`
+* Then `+ -`
+* Then comparisons
+* Then logical
+* Last: assignment
+
+---
+
+## **14. Summary**
+
+Operators help you:
+
+* Calculate values
+* Compare data
+* Assign variables
+* Write conditions
+* Work with strings and numbers
+* Handle optional & null values
+
+---
+
+
