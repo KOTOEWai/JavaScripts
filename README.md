@@ -8,7 +8,7 @@
 - [Conditions](#Conditions)
 - [Loops](#Loops)
 - [Functions](#Functions)
-
+- [Objects](#Objects)
 
 ## LexicalStructure
 
@@ -2241,4 +2241,252 @@ Functions are the foundation of JavaScript. Mastering them = mastering JS.
 ---
 
 
+
+#  Objects 
+
+JavaScript **objects** are one of the most important parts of the language. They let you store data in key-value pairs and model real-world entities.
+
+---
+
+## 📌 1. What Is an Object?
+
+An **object** is a collection of related data and functions.
+
+```js
+const user = {
+  name: "Alex",
+  age: 18,
+  isStudent: true,
+};
+```
+
+* **Keys** → `name`, `age`, `isStudent`
+* **Values** → "Alex", 18, true
+
+---
+
+## 📌 2. Creating Objects
+
+### **A. Object Literal (most common)**
+
+```js
+const car = {
+  brand: "Toyota",
+  model: "Vios",
+  year: 2020
+};
+```
+
+### **B. Using `new Object()`**
+
+```js
+const obj = new Object();
+obj.x = 10;
+obj.y = 20;
+```
+
+### **C. Using a Constructor Function**
+
+```js
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+const p1 = new Person("John", 20);
+```
+
+### **D. Using Classes (ES6)**
+
+```js
+class User {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+}
+
+const u1 = new User("Alice", 25);
+```
+
+---
+
+## 📌 3. Accessing Object Properties
+
+### **Dot Notation**
+
+```js
+console.log(user.name);
+```
+
+### **Bracket Notation**
+
+```js
+console.log(user["age"]);
+```
+
+Useful when:
+
+* key contains spaces
+* key is dynamic
+
+---
+
+## 📌 4. Adding / Updating Properties
+
+### **Add new property**
+
+```js
+user.email = "alex@example.com";
+```
+
+### **Update existing property**
+
+```js
+user.age = 19;
+```
+
+---
+
+## 📌 5. Deleting Properties
+
+```js
+delete user.isStudent;
+```
+
+---
+
+## 📌 6. Methods (Functions inside Objects)
+
+```js
+const person = {
+  name: "Leo",
+  greet() {
+    console.log(`Hi, I am ${this.name}`);
+  }
+};
+
+person.greet();
+```
+
+`this` refers to the current object.
+
+---
+
+## 📌 7. Nested Objects
+
+```js
+const student = {
+  name: "Nyein",
+  address: {
+    city: "Yangon",
+    township: "Hlaing"
+  }
+};
+```
+
+---
+
+## 📌 8. Looping Through Objects
+
+### **for…in**
+
+```js
+for (let key in user) {
+  console.log(key, user[key]);
+}
+```
+
+### **Object.keys()**
+
+```js
+console.log(Object.keys(user));
+```
+
+### **Object.values()**
+
+```js
+console.log(Object.values(user));
+```
+
+### **Object.entries()**
+
+```js
+console.log(Object.entries(user));
+```
+
+---
+
+## 📌 9. Copying Objects
+
+### **Shallow Copy**
+
+```js
+const copy = { ...user };
+```
+
+### **Deep Copy**
+
+```js
+const deepCopy = JSON.parse(JSON.stringify(user));
+```
+
+---
+
+## 📌 10. Object Destructuring
+
+```js
+const { name, age } = user;
+console.log(name, age);
+```
+
+---
+
+## 📌 11. Optional Chaining (?.)
+
+Prevents errors when a property might be missing.
+
+```js
+console.log(student.address?.city);
+```
+
+---
+
+## 📌 12. Useful Built-in Methods
+
+* `Object.keys(obj)` → returns keys
+* `Object.values(obj)` → returns values
+* `Object.entries(obj)` → returns key/value pairs
+* `Object.assign(target, source)` → merges objects
+
+---
+
+## 📌 13. Real-Life Example
+
+```js
+const product = {
+  id: 1,
+  name: "Laptop",
+  price: 980000,
+  specs: {
+    cpu: "i5",
+    ram: "16GB"
+  },
+  getInfo() {
+    return `${this.name} - ${this.price} Ks`;
+  }
+};
+```
+
+---
+
+## 📌 Summary
+
+* Objects store data in key/value pairs
+* Methods = functions inside objects
+* Dot & bracket notation for access
+* Use destructuring for cleaner code
+* Objects are used everywhere in JS (React, APIs, Node.js)
+
+---
 
