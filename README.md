@@ -5,7 +5,8 @@
 - [DataTypes](#DataTypes)
 - [Variables](#Variables)
 - [Operators](#Operators)
-- [Conditions](#Conditions )
+- [Conditions](#Conditions)
+- [Loops](#Loops)
 
 
 ## LexicalStructure
@@ -1485,6 +1486,7 @@ switch (day) {
     console.log("Work day");
     break;
   case "Sat":
+    console.log("holiday");
   case "Sun":
     console.log("Weekend");
     break;
@@ -1653,4 +1655,262 @@ Tools for conditions:
 
 ---
 
+
+#  Loops
+
+A complete guide to loops in JavaScript — how to repeat actions, iterate data, and control flow efficiently.
+
+---
+
+## **1. What Are Loops?**
+
+Loops allow you to repeat code multiple times — automatically.
+
+Example:
+
+```js
+for (let i = 1; i <= 3; i++) {
+  console.log(i);
+}
+```
+
+Output:
+
+```
+1
+2
+3
+```
+
+---
+
+## **2. Types of Loops in JavaScript**
+
+JavaScript supports several loop types:
+
+1. **for** loop
+2. **while** loop
+3. **do...while** loop
+4. **for...of** loop (iterate arrays, strings, etc.)
+5. **for...in** loop (iterate object keys)
+6. Array iteration methods (not exactly loops but commonly used)
+
+   * `forEach`
+   * `map`
+   * `filter`
+   * `reduce`
+
+---
+
+## **3. The `for` Loop**
+
+Most common and powerful loop.
+
+### Syntax:
+
+```js
+for (initialization; condition; update) {
+  // code
+}
+```
+
+### Example:
+
+```js
+for (let i = 0; i < 5; i++) {
+  console.log("Number:", i);
+}
+```
+
+---
+
+## **4. The `while` Loop**
+
+Runs as long as the condition is **true**.
+
+```js
+let i = 0;
+while (i < 3) {
+  console.log(i);
+  i++;
+}
+```
+
+Use when you don't know how many times to loop.
+
+---
+
+## **5. The `do...while` Loop**
+
+Runs **at least once**, even if the condition is false.
+
+```js
+let i = 5;
+do {
+  console.log(i);
+  i++;
+} while (i < 3);
+```
+
+---
+
+## **6. The `for...of` Loop**
+
+Used for iterating **iterables**:
+
+* Arrays
+* Strings
+* Maps
+* Sets
+
+### Example:
+
+```js
+let colors = ["red", "green", "blue"];
+for (const c of colors) {
+  console.log(c);
+}
+```
+
+---
+
+## **7. The `for...in` Loop**
+
+Used to iterate **object keys**.
+
+```js
+let user = {
+  name: "Toe",
+  age: 18,
+};
+
+for (const key in user) {
+  console.log(key, user[key]);
+}
+```
+
+⚠️ Avoid using `for...in` for arrays.
+
+---
+
+## **8. Array Iteration Methods**
+
+These are not loops but often replace loops.
+
+### **forEach** (loop through each item)
+
+```js
+[1, 2, 3].forEach(n => console.log(n));
+```
+
+### **map** (returns new array)
+
+```js
+let doubled = [1, 2, 3].map(n => n * 2);
+```
+
+### **filter** (filters values)
+
+```js
+let even = [1, 2, 3, 4].filter(n => n % 2 === 0);
+```
+
+### **reduce** (accumulates values)
+
+```js
+let sum = [1, 2, 3].reduce((a, b) => a + b, 0);
+```
+
+---
+
+## **9. Loop Control: `break` and `continue`**
+
+### **break** → stops the loop completely.
+
+```js
+for (let i = 1; i <= 5; i++) {
+  if (i === 3) break;
+  console.log(i);
+}
+```
+
+### **continue** → skips current iteration.
+
+```js
+for (let i = 1; i <= 5; i++) {
+  if (i === 3) continue;
+  console.log(i);
+}
+```
+
+---
+
+## **10. Infinite Loops (Be Careful!)**
+
+```js
+while (true) {
+  console.log("This never stops");
+}
+```
+
+Make sure your loop condition eventually becomes **false**.
+
+---
+
+## **11. Nested Loops**
+
+Loop inside a loop.
+
+```js
+for (let i = 1; i <= 2; i++) {
+  for (let j = 1; j <= 3; j++) {
+    console.log(i, j);
+  }
+}
+```
+
+---
+
+## **12. When to Use Which Loop?**
+
+| Loop Type    | Best Use                     |
+| ------------ | ---------------------------- |
+| `for`        | Known number of iterations   |
+| `while`      | Unknown number of iterations |
+| `do...while` | Run at least once            |
+| `for...of`   | Arrays, strings, iterables   |
+| `for...in`   | Object keys                  |
+| `forEach`    | Simple iteration (no break)  |
+| `map`        | Transform array              |
+| `filter`     | Filter array                 |
+| `reduce`     | Calculate a single value     |
+
+---
+
+## **13. Common Mistakes**
+
+❌ Forgetting to update the counter
+❌ Creating infinite loops
+❌ Using `for...in` for arrays
+❌ Expecting `break` inside `forEach` (it does not work)
+
+---
+
+## **14. Summary**
+
+Loops help you:
+
+* Repeat actions
+* Work with collections
+* Automate repetitive tasks
+* Process arrays/objects
+
+You now know:
+
+* `for`, `while`, `do...while`
+* `for...of`, `for...in`
+* Array iteration methods
+* break/continue
+
+---
 
