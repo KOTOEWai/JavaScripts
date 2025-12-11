@@ -13,6 +13,7 @@
 - [Asynchronous](#Asynchronous-JavaScript)
 - [TypeCasting](#TypeCasting)
 - [Modules](#Modules)
+- [ErrorHandling](#ErrorHandling)
 
 ## LexicalStructure
 
@@ -3377,4 +3378,243 @@ console.log(multiply(4, 5));
 ✔ Prefer ES Modules over CommonJS for new projects
 
 ---
+
+# ErrorHandling 
+
+## 📌 Introduction
+
+**Error handling** in JavaScript allows you to catch and manage errors so your program doesn’t crash unexpectedly.
+Errors can happen due to:
+
+* Invalid input
+* Network failure
+* Wrong code logic
+* Unexpected API responses
+* Missing files (Node.js)
+
+JavaScript provides tools like **try/catch**, **throw**, **finally**, and **error objects** to manage these situations safely.
+
+---
+
+# 1. Types of Errors in JavaScript
+
+### 🔹 Syntax Error
+
+Code cannot run due to incorrect syntax.
+
+```js
+console.log("Hello"   // missing parenthesis
+```
+
+### 🔹 Reference Error
+
+Using a variable that does not exist.
+
+```js
+console.log(x); // x is not defined
+```
+
+### 🔹 Type Error
+
+Wrong operation on the wrong data type.
+
+```js
+const num = 5;
+num.toUpperCase(); // TypeError
+```
+
+### 🔹 Range Error
+
+Invalid length or number range.
+
+```js
+new Array(-2); // RangeError
+```
+
+### 🔹 Custom Errors (using throw)
+
+You can throw your own custom errors.
+
+```js
+throw new Error("Something went wrong!");
+```
+
+---
+
+# 2. try / catch
+
+Used to handle errors gracefully.
+
+```js
+try {
+  const result = dangerousFunction();
+} catch (error) {
+  console.log("Error happened:", error);
+}
+```
+
+---
+
+# 3. finally Block
+
+Runs **always**, whether there's an error or not.
+
+```js
+try {
+  console.log("Trying...");
+} catch (err) {
+  console.log("Error!");
+} finally {
+  console.log("Always runs");
+}
+```
+
+---
+
+# 4. Throwing Custom Errors
+
+Use `throw` to trigger your own error.
+
+```js
+function divide(a, b) {
+  if (b === 0) {
+    throw new Error("Cannot divide by zero");
+  }
+  return a / b;
+}
+```
+
+---
+
+# 5. The Error Object
+
+JavaScript error objects contain useful information:
+
+```js
+try {
+  throw new Error("Failed to load");
+} catch (e) {
+  console.log(e.name);    // "Error"
+  console.log(e.message); // "Failed to load"
+  console.log(e.stack);   // stack trace
+}
+```
+
+Common error types:
+
+* Error
+* TypeError
+* ReferenceError
+* SyntaxError
+* RangeError
+* EvalError
+
+---
+
+# 6. Error Handling in Asynchronous Code
+
+## 🔹 Callbacks
+
+```js
+fs.readFile("test.txt", (err, data) => {
+  if (err) return console.error(err);
+  console.log(data);
+});
+```
+
+## 🔹 Promises
+
+```js
+fetch("/api")
+  .then(res => res.json())
+  .catch(err => console.log("Error:", err));
+```
+
+## 🔹 async / await with try/catch
+
+```js
+async function loadData() {
+  try {
+    const res = await fetch("/api/users");
+    const data = await res.json();
+  } catch (error) {
+    console.log("Failed to load:", error);
+  }
+}
+```
+
+---
+
+# 7. Global Error Handling
+
+### 🔹 Browser
+
+```js
+window.onerror = function(message, source, line, column, error) {
+  console.log("Global Error: ", message);
+};
+```
+
+### 🔹 Node.js
+
+```js
+process.on("uncaughtException", (err) => {
+  console.log("Unhandled Exception:", err);
+});
+```
+
+---
+
+# 8. Validation Errors
+
+Throw custom errors when data is invalid.
+
+```js
+function register(user) {
+  if (!user.name) {
+    throw new Error("Name is required");
+  }
+}
+```
+
+---
+
+# 9. Error Logging (Best Practices)
+
+✔ Log errors clearly
+✔ Include timestamp
+✔ Never show internal errors to users
+✔ Use monitoring tools (Sentry, LogRocket, Datadog)
+✔ Use custom error classes for clarity
+
+---
+
+# 10. Creating Custom Error Classes
+
+```js
+class ValidationError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "ValidationError";
+  }
+}
+
+throw new ValidationError("Invalid email format");
+```
+
+---
+
+# 11. Best Practices
+
+✔ Use try/catch only where needed
+✔ Throw meaningful error messages
+✔ Clean and consistent error structure
+✔ Handle async errors with `try/catch` or `.catch()`
+✔ Avoid silent error handling
+✔ Use custom errors for validation and logic problems
+
+---
+
+
+
 
