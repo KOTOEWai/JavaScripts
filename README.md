@@ -16,7 +16,8 @@
 - [ErrorHandling](#ErrorHandling)
 - [OOP](#OOPConpects)
 - [JSON](#JSON)
-- [FetchAPI](#FetchAPI )
+- [FetchAPI](#FetchAPI)
+- [ES6+](ES6+)
 
 ## LexicalStructure
 
@@ -4311,3 +4312,281 @@ export async function GET() {
 * Works great with async/await
 
 ---
+# ES6+
+
+ES6+ refers to **ECMAScript 2015 (ES6) and all versions after it**.
+It introduced many powerful features that make JavaScript cleaner, faster, and easier to write.
+
+---
+
+# 🚀 1. `let` and `const`
+
+### `let`
+
+* Block scoped
+* Can be reassigned
+
+```js
+let age = 20;
+age = 21;
+```
+
+### `const`
+
+* Block scoped
+* Cannot be reassigned
+
+```js
+const name = "Alex";
+```
+
+---
+
+# 🚀 2. Arrow Functions
+
+Shorter, cleaner syntax.
+
+```js
+const add = (a, b) => a + b;
+```
+
+Arrow functions **do not have their own `this`**.
+
+---
+
+# 🚀 3. Template Literals
+
+Use backticks `` ` ``, variable interpolation, and multiline strings.
+
+```js
+const name = "John";
+console.log(`Hello ${name}!`);
+```
+
+---
+
+# 🚀 4. Default Parameters
+
+```js
+function greet(name = "Guest") {
+  console.log(`Hello ${name}`);
+}
+```
+
+---
+
+# 🚀 5. Destructuring
+
+### Object Destructuring
+
+```js
+const user = { name: "Tom", age: 30 };
+const { name, age } = user;
+```
+
+### Array Destructuring
+
+```js
+const nums = [10, 20, 30];
+const [a, b] = nums;
+```
+
+---
+
+# 🚀 6. Spread Operator `...`
+
+### Spread into arrays
+
+```js
+const arr1 = [1,2];
+const arr2 = [...arr1, 3, 4];
+```
+
+### Spread into objects
+
+```js
+const user = { name: "Alice" };
+const newUser = { ...user, age: 22 };
+```
+
+---
+
+# 🚀 7. Rest Parameters
+
+```js
+function sum(...nums) {
+  return nums.reduce((a, b) => a + b);
+}
+```
+
+---
+
+# 🚀 8. Enhanced Object Literals
+
+```js
+const name = "John";
+const age = 20;
+
+const user = {
+  name,
+  age,
+  greet() {
+    console.log("Hello!");
+  }
+};
+```
+
+---
+
+# 🚀 9. Modules (import/export)
+
+```js
+// math.js
+export function add(a, b) { return a + b; }
+
+// app.js
+import { add } from "./math.js";
+```
+
+---
+
+# 🚀 10. Classes
+
+```js
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+
+  speak() {
+    console.log(`${this.name} speaks`);
+  }
+}
+```
+
+---
+
+# 🚀 11. Promises
+
+```js
+const getData = () => new Promise((resolve) => {
+  resolve("Done");
+});
+```
+
+---
+
+# 🚀 12. Async/Await
+
+Cleaner way to handle asynchronous code.
+
+```js
+async function load() {
+  const data = await fetch("/api");
+}
+```
+
+---
+
+# 🚀 13. Optional Chaining `?.`
+
+Safer property access.
+
+```js
+console.log(user?.address?.city);
+```
+
+---
+
+# 🚀 14. Nullish Coalescing `??`
+
+Returns right value only if left is `null` or `undefined`.
+
+```js
+const username = input ?? "Guest";
+```
+
+---
+
+# 🚀 15. `Map` and `Set`
+
+### Set
+
+```js
+const set = new Set([1,2,2,3]);
+```
+
+### Map
+
+```js
+const map = new Map();
+map.set("name", "John");
+```
+
+---
+
+# 🚀 16. Iterators & for...of
+
+```js
+for (const value of [10,20,30]) {
+  console.log(value);
+}
+```
+
+---
+
+# 🚀 17. Symbol
+
+Unique identifier.
+
+```js
+const id = Symbol("id");
+```
+
+---
+
+# 🚀 18. BigInt
+
+Large integers.
+
+```js
+const n = 12345678901234567890n;
+```
+
+---
+
+# 🚀 19. Dynamic Import
+
+```js
+import("./module.js").then(module => {
+  module.run();
+});
+```
+
+---
+
+# 🚀 20. Promise.all, Promise.any, Promise.race
+
+```js
+await Promise.all([p1, p2]);
+```
+
+---
+
+# 🔥 Summary Table
+
+| Feature           | Description            |
+| ----------------- | ---------------------- |
+| let/const         | Block-scoped variables |
+| Arrow functions   | Shorter, no `this`     |
+| Template literals | Backtick strings       |
+| Destructuring     | Extract values         |
+| Spread/Rest       | Expand or collect      |
+| Classes           | OOP support            |
+| Promises          | Async operations       |
+| Async/await       | Cleaner async          |
+| Optional chaining | Safe access            |
+| Modules           | import/export          |
+
+---
+
