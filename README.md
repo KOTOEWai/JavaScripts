@@ -17,7 +17,7 @@
 - [OOP](#OOPConpects)
 - [JSON](#JSON)
 - [FetchAPI](#FetchAPI)
-- [ES6+](ES6+)
+- [ES6+(Modern JavaScript)](#ES6+)
 
 ## LexicalStructure
 
