@@ -28,7 +28,7 @@
 
 ## JS Engine
 
-- JavaScript Engine ဆိုတာ JavaScript code တွေကို Machine Code (သို့) Bytecode အဖြစ် ပြောင်းပြီး execute လုပ်ပေးတဲ့ software program တစ်ခုဖြစ်ပါတယ်။
+ JavaScript Engine ဆိုတာ JavaScript code တွေကို Machine Code (သို့) Bytecode အဖြစ် ပြောင်းပြီး execute လုပ်ပေးတဲ့ software program တစ်ခုဖြစ်ပါတယ်။
 
 * Google Chrome, Edge → V8 Engine
 
@@ -46,35 +46,43 @@
 
 ###  Memory Heap
 ```
-JavaScript Engine ထဲက Memory Heap ဆိုတာ variable တွေ၊ objects တွေနဲ့ data တွေကို သိမ်းဆည်းထားတဲ့ "ဂိုဒေါင်" တစ်ခုလိုပါပဲ။
+JavaScript Engine ထဲက Memory Heap ဆိုတာ variable တွေ၊ objects တွေနဲ့
+ data တွေကို သိမ်းဆည်းထားတဲ့ "ဂိုဒေါင်" တစ်ခုလိုပါပဲ။
 
 Memory Heap ရဲ့ အဓိက အချက်များ
 
 ၁။ Unstructured Memory (ပုံသေ သတ်မှတ်မထားသော နေရာ)
 
-Call Stack လိုမျိုး အစီအစဉ်တကျ (LIFO) သိမ်းတာမျိုး မဟုတ်ဘဲ၊ Heap ကတော့ ကြီးမားတဲ့ memory ဧရိယာကြီးတစ်ခုပါ။ ပုံထဲမှာလည်း data တွေကို နေရာအနှံ့ ကြဲပြန့်ပြီး သိမ်းထားတာကို တွေ့နိုင်ပါတယ်။
+Call Stack လိုမျိုး အစီအစဉ်တကျ (LIFO) သိမ်းတာမျိုး မဟုတ်ဘဲ၊ 
+Heap ကတော့ ကြီးမားတဲ့ memory ဧရိယာကြီးတစ်ခုပါ။ ပုံထဲမှာလည်း data တွေကို
+နေရာအနှံ့ ကြဲပြန့်ပြီး သိမ်းထားတာကို တွေ့နိုင်ပါတယ်။
 
 ၂။ ဘာတွေကို သိမ်းသလဲ?
 
-Objects & Arrays: JavaScript မှာရှိတဲ့ reference types တွေ (ဥပမာ- {name: "Mg Mg"}, [1, 2, 3]) ကို ဒီမှာ သိမ်းပါတယ်။
+Objects & Arrays: JavaScript မှာရှိတဲ့ reference types တွေ 
+(ဥပမာ- {name: "Mg Mg"}, [1, 2, 3]) ကို ဒီမှာ သိမ်းပါတယ်။
 
 Functions: Function definition တွေကိုလည်း memory heap ထဲမှာပဲ သိမ်းဆည်းပါတယ်။
 
-Large Data: Stack ထဲမှာ သိမ်းဖို့ အရွယ်အစား ကြီးမားလွန်းတဲ့ data တွေကို ဒီနေရာမှာ နေရာချ (Allocate) ပေးပါတယ်။
+Large Data: Stack ထဲမှာ သိမ်းဖို့ အရွယ်အစား ကြီးမားလွန်းတဲ့ data တွေကို
+ ဒီနေရာမှာ နေရာချ (Allocate) ပေးပါတယ်။
 
 ၃။ Allocation vs Garbage Collection
 
 Memory Allocation: Variable အသစ်တစ်ခု ဆောက်လိုက်တိုင်း Engine က Heap ထဲမှာ နေရာအလွတ်တစ်ခု ရှာပြီး သိမ်းပေးပါတယ်။
 
-Garbage Collection: JavaScript မှာ Memory ကို ကိုယ်တိုင် ဖျက်ပေးစရာ မလိုပါဘူး။ Engine ထဲမှာ Garbage Collector ဆိုတာ ပါပါတယ်။
-သူက Heap ထဲကို အမြဲစစ်ဆေးပြီး ဘယ် variable ကိုမှ အသုံးမပြုတော့ဘူး (Reference မရှိတော့ဘူး) ဆိုရင် အဲဒီ memory ကို အလိုအလျောက် ပြန်သိမ်းသွားပါတယ်။
+Garbage Collection: JavaScript မှာ Memory ကို ကိုယ်တိုင် ဖျက်ပေးစရာ မလိုပါဘူး။ 
+Engine ထဲမှာ Garbage Collector ဆိုတာ ပါပါတယ်။
+သူက Heap ထဲကို အမြဲစစ်ဆေးပြီး ဘယ် variable ကိုမှ အသုံးမပြုတော့ဘူး
+(Reference မရှိတော့ဘူး) ဆိုရင် အဲဒီ memory ကို အလိုအလျောက် ပြန်သိမ်းသွားပါတယ်။
 
 
 Call Stack နဲ့ ဘယ်လို ချိတ်ဆက်သလဲ?
 
 ဒီအချက်က အရေးကြီးပါတယ်။
 
-Object တစ်ခုကို Heap ထဲမှာ သိမ်းလိုက်တဲ့အခါ သူ့ရဲ့ Memory Address (Reference) လေးတစ်ခု ရလာပါတယ်။
+Object တစ်ခုကို Heap ထဲမှာ သိမ်းလိုက်တဲ့အခါ သူ့ရဲ့ 
+Memory Address (Reference) လေးတစ်ခု ရလာပါတယ်။
 
 အဲဒီ Address လေးကိုမှ Call Stack ထဲမှာရှိတဲ့ variable ထဲကို ထည့်သိမ်းလိုက်တာပါ။
 
@@ -84,7 +92,8 @@ Object တစ်ခုကို Heap ထဲမှာ သိမ်းလိုက
 
 user ဆိုတဲ့ variable နာမည်နဲ့ Address လေးကတော့ Call Stack ထဲမှာ ရှိနေပါမယ်။
 
-Memory Heap ထဲမှာ data တွေ အရမ်းများလာပြီး Garbage Collector ကလည်း မဖျက်ပေးနိုင်တဲ့အခါ Memory Leak (စက်လေးသွားတာမျိုး) ဖြစ်တတ်ပါတယ်။
+Memory Heap ထဲမှာ data တွေ အရမ်းများလာပြီး Garbage Collector ကလည်း
+မဖျက်ပေးနိုင်တဲ့အခါ Memory Leak (စက်လေးသွားတာမျိုး) ဖြစ်တတ်ပါတယ်။
 
 ```
 ### Call Stack
@@ -108,7 +117,9 @@ Pop: Function ထဲက အလုပ်တွေ ပြီးသွားတဲ�
 
 ၂။ Single Call Stack
 
-JavaScript က Single-threaded ဖြစ်တဲ့အတွက် Call Stack တစ်ခုပဲ ရှိပါတယ်။ ဒါကြောင့် သူက တစ်ကြိမ်မှာ အလုပ်တစ်ခုတည်းကိုပဲ အာရုံစိုက်လုပ်နိုင်ပါတယ်။ အပေါ်က function မပြီးမချင်း အောက်က function ဆီကို မသွားပါဘူး။
+JavaScript က Single-threaded ဖြစ်တဲ့အတွက် Call Stack တစ်ခုပဲ ရှိပါတယ်။
+ ဒါကြောင့် သူက တစ်ကြိမ်မှာ အလုပ်တစ်ခုတည်းကိုပဲ အာရုံစိုက်လုပ်နိုင်ပါတယ်။ 
+ အပေါ်က function မပြီးမချင်း အောက်က function ဆီကို မသွားပါဘူး။
 
 ၃။ အလုပ်လုပ်ပုံ ဥပမာ
 
@@ -135,10 +146,12 @@ sayHi အလုပ်ပြီးသွားတဲ့အခါ Stack ထဲက�
 
 ၄။ Stack Overflow (Error)
 
-Function တစ်ခုကနေ နောက်ထပ် function တစ်ခုကို အဆုံးမရှိ (Infinite) ခေါ်နေမယ်ဆိုရင် Stack ထဲမှာ နေရာမဆန့်တော့ဘဲ ပြည့်လျှံသွားတတ်ပါတယ်။ ဒါကို Stack Overflow လို့ ခေါ်ပါတယ်။
+Function တစ်ခုကနေ နောက်ထပ် function တစ်ခုကို အဆုံးမရှိ (Infinite) ခေါ်နေမယ်ဆိုရင်
+ Stack ထဲမှာ နေရာမဆန့်တော့ဘဲ ပြည့်လျှံသွားတတ်ပါတယ်။ ဒါကို Stack Overflow လို့ ခေါ်ပါတယ်။
 
 Call Stack နဲ့ Event Loop
-ပုံထဲမှာ မြင်ရတဲ့အတိုင်း Call Stack ထဲက အလုပ်တွေ အကုန်လုံး ပြီးသွားမှသာ Event Loop က Callback Queue ထဲမှာ စောင့်နေတဲ့ အလုပ်တွေကို Stack ထဲကို ပို့ပေးတာ ဖြစ်ပါတယ်။
+ပုံထဲမှာ မြင်ရတဲ့အတိုင်း Call Stack ထဲက အလုပ်တွေ အကုန်လုံး ပြီးသွားမှသာ 
+Event Loop က Callback Queue ထဲမှာ စောင့်နေတဲ့ အလုပ်တွေကို Stack ထဲကို ပို့ပေးတာ ဖြစ်ပါတယ်။
 ```
 
 ## LexicalStructure
