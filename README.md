@@ -5,6 +5,7 @@
   - [Web APIs](#web-apis)
   - [Event Loop](#event-loop)
   - [Callback Queue](#callback-queue)
+ 
 - [LexicalStructure](#LexicalStructure)
 - [Expressions](#Expressions)
 - [DataTypes](#DataTypes)
@@ -26,7 +27,8 @@
 - [Hoisting](#Hoisting)
 - [Scope](#scope)
 - [Scope Chain](#scope-chain)
-
+- [Lexical Scoping](#lexical-scoping)
+- [Closure](#closure)
 ## JavaScript Execution Model
 
 <img width="691" height="478" alt="image" src="https://github.com/user-attachments/assets/7dd32f98-cae3-4ce2-9c47-967549653772" />
@@ -5342,7 +5344,6 @@ ReferenceError တက်စေတဲ့ နယ်မြေ (Area) ကို ခ�
 | let / const	   |     ဖြစ်တယ်	       |        မရှိဘူး (Uninitialized)   |    	ReferenceError တက်မယ်       |
 
 ---
-
 # Scope
 
 ```
@@ -5492,4 +5493,121 @@ code ရေးကတည်းက (ဘယ်နေရာမှာ ရေးထာ
 မတွေ့ရင် အိမ်ရှေ့ကွင်းပြင်ထဲမှာ ထွက်ရှာမယ် (Global Scope)။
 
 အပြင်မှာမှ မတွေ့ရင်တော့ အဲဒီပစ္စည်း မရှိဘူးလို့ သတ်မှတ်လိုက်တာပါပဲ။
+```
+# Lexical Scoping
+```
+JavaScript မှာ Lexical Scope (သို့မဟုတ် Static Scope) ဆိုသည်မှာ variable တစ်ခု၏ 
+တည်ရှိမှုနယ်ပယ် (Scope) ကို ၎င်းအား code ရေးသားစဉ်က ထားရှိခဲ့သော နေရာ  ပေါ်မူတည်၍
+သတ်မှတ်ခြင်းကိုဆိုလိုပါသည်။
+
+ရိုးရိုးရှင်းရှင်းပြောရရင် "Function တစ်ခုဟာ သူ့ရဲ့ အပြင်ဘက် (Parent) မှာရှိတဲ့ Variable တွေကို လှမ်းမြင်နိုင်တယ်" 
+ဆိုတာပါပဲ။ 
+
+function outer() {
+  const name = "Aung Aung";
+
+  function inner() {
+    // inner function ထဲမှာ 'name' မရှိပေမဲ့
+    // သူ့ရဲ့ lexical parent ဖြစ်တဲ့ outer ဆီက variable ကို လှမ်းသုံးလို့ရတယ်
+    console.log(name); 
+  }
+
+  inner();
+}
+
+outer(); // Output: Aung Aung
+ဒီနေရာမှာ inner() function ကို outer() ရဲ့ အထဲမှာ ရေးထားတဲ့အတွက် inner ရဲ့ lexical environment
+ ထဲမှာ outer ရဲ့ variable တွေ ပါဝင်နေတာ ဖြစ်ပါတယ်။
+
+အဓိက အချက်များ
+
+အထဲကနေ အပြင်ကိုပဲ မြင်ရတယ်: Function အငယ်လေးတွေက သူတို့ကို ဝန်းရံထားတဲ့ အပြင်ဘက်
+(Parent) scope တွေကို လှမ်းမြင်နိုင်ပေမဲ့၊ အပြင်ဘက်က function ကတော့ အထဲက function ထဲက variable
+တွေကို လှမ်းမမြင်နိုင်ပါဘူး။
+
+Static ဖြစ်တယ်: Function ကို ဘယ်နေရာမှာ "ခေါ်သလဲ" (Call-site) ဆိုတာက အရေးမကြီးပါဘူး။
+ဘယ်နေရာမှာ "ကြေညာခဲ့သလဲ" (Definition-site) ဆိုတာကပဲ အရေးကြီးပါတယ်။
+
+Lexical Scoping vs Dynamic Scoping
+
+JavaScript ဟာ Lexical Scoping ကို သုံးပါတယ်။ တချို့ ဘာသာစကားတွေမှာ သုံးတဲ့ Dynamic Scoping နဲ့ မတူပါဘူး။
+
+JavaScript
+const x = 10;
+
+function a() {
+  console.log(x);
+}
+
+function b() {
+  const x = 20;
+  a(); // x က ဘယ်လောက်ထွက်မလဲ?
+}
+
+b(); 
+Lexical Scoping (JS): အဖြေက 10 ထွက်ပါမယ်။ ဘာလို့လဲဆိုတော့ a() ကို ကြေညာခဲ့တဲ့ 
+နေရာရဲ့ အပြင်ဘက်မှာ x = 10 ပဲ ရှိလို့ပါ။
+
+Dynamic Scoping: အဖြေက 20 ထွက်ပါလိမ့်မယ် (ဘာလို့လဲဆိုတော့ a() ကို ခေါ်လိုက်တဲ့ နေရာမှာ x က 20 ဖြစ်နေလို့ပါ)။ 
+ဒါပေမဲ့ JS က ဒါမျိုး အလုပ်မလုပ်ပါဘူး။
+
+
+Lexical Scoping ကို "မျိုးရိုးဗီဇ" လို မှတ်သားနိုင်ပါတယ်။ သင်ဟာ သင့်မိဘတွေဆီက အမွေ (Variables) တွေကို ရပိုင်ခွင့်ရှိပါတယ်။ 
+သင် ဘယ်မြို့ကိုပဲ ရောက်သွားရောက်သွား (Function ကို ဘယ်မှာပဲ ခေါ်ခေါ်)၊ သင့်ရဲ့ မိဘက ဘယ်သူလဲဆိုတာ (Lexical Parent) မပြောင်းလဲတဲ့အတွက် အဲဒီအမွေတွေကို သင် ဆက်ပြီး သုံးစွဲခွင့် ရှိနေမှာ ဖြစ်ပါတယ်။
+
+```
+# Closure
+```
+JavaScript မှာ Closure  ဆိုတာက Function တစ်ခုဟာ သူ့ရဲ့အပြင်ဘက် scope (outer function scope)
+က variable တွေကို သူကိုယ်တိုင်ပြီးဆုံးသွားရင်တောင် မှတ်မိနေပြီး ပြန်သုံးနိုင်တဲ့ စွမ်းရည် ကို ခေါ်တာဖြစ်ပါတယ်. 
+
+ရိုးရှင်းရှင်း ပြောရရင် "Function တစ်ခုက သူ့ကို ဖန်တီးခဲ့တဲ့ ပတ်ဝန်းကျင် (Outer Scope) မှာရှိတဲ့ Variable တွေကို အမြဲတမ်း မှတ်မိနေခြင်း" ကို ခေါ်တာပါ။
+
+ပုံမှန်အားဖြင့် Function တစ်ခုက အလုပ်လုပ်ပြီးသွားရင် သူ့ထဲက variable တွေဟာ memory ထဲကနေ ပျောက်သွားရမှာပါ။
+ ဒါပေမဲ့ Closure ကြောင့် အဲဒီ variable တွေကို ဆက်ပြီး သိမ်းထားနိုင်တာ ဖြစ်ပါတယ်။
+
+၁။ Closure ဘယ်လို ဖြစ်ပေါ်လာသလဲ?
+
+Function တစ်ခုအတွင်းမှာ နောက်ထပ် Function တစ်ခု (Inner Function) ကို ထပ်ရေးပြီး အဲဒီ Inner function ကို 
+အပြင်ကို return ပြန်ထုတ်လိုက်တဲ့အခါ Closure ဖြစ်ပေါ်လာပါတယ်။
+
+function outerFunction() {
+  let outerVariable = "I am outside!";
+
+  function innerFunction() {
+    console.log(outerVariable); // innerFunction က outerVariable ကို သုံးနေတယ်
+  }
+
+  return innerFunction; // function ကိုပြန်ထုတ်လိုက်တယ်
+}
+
+const myClosure = outerFunction();
+myClosure(); // Output: "I am outside!"
+
+
+ဘာဖြစ်သွားတာလဲ?
+outerFunction() အလုပ်လုပ်ပြီးဆုံးသွားပေမယ့် myClosure() ကို ခေါ်လိုက်တဲ့အချိန်မှာ outerVariable ရဲ့ တန်ဖိုးကို ဆက်မှတ်မိနေဆဲဖြစ်ပါတယ်. 
+
+
+အလုပ်လုပ်ပုံ အဆင့်ဆင့် (Execution Context အရ)
+
+Creation: outerFunction ကို ခေါ်လိုက်တဲ့အခါ သူ့အတွက် Memory နေရာတစ်ခု ရလာပါတယ်။
+
+Returning: သူက innerFunction ကို ပြန်ပေးလိုက်တဲ့အခါ အဲဒီ inner function နဲ့အတူ သူ့ရဲ့ 
+Scope Chain  ပါ ပါသွားပါတယ်။
+
+Persistence: Closure က count variable ကို Garbage Collector ကနေ မဖျက်ပစ်အောင်
+တားဆီးထားလိုက်ပါတယ်။ ဒါကြောင့် counter() ကို ခေါ်တိုင်း count တန်ဖိုးက ဆက်ရှိနေတာပါ။
+
+၄။ သတိထားရန်အချက်
+Closures တွေက variable တွေကို memory ထဲမှာ ဆက်သိမ်းထားတဲ့အတွက် အသုံးမလိုဘဲ အများကြီး 
+သုံးရင် Memory Leak (Memory နေရာလွတ် မကျန်တော့ခြင်း) ဖြစ်တတ်ပါတယ်။ အလုပ်ပြီးသွားရင် reference
+ ကို null ပြန်လုပ်ပေးဖို့ လိုအပ်ရင် လိုအပ်ပါလိမ့်မယ်။
+
+အနှစ်ချုပ် (Analogy)
+Closure ဆိုတာ "ကျောပိုးအိတ်" နဲ့ တူပါတယ်။ Function က တစ်နေရာကို ခရီးထွက်သွားတဲ့အခါ 
+(Return ပြန်တဲ့အခါ) သူ့အိမ်မှာရှိတဲ့ ပစ္စည်းတွေကို ကျောပိုးအိတ်ထဲ ထည့်ယူသွားသလိုပါပဲ။ အဲဒီ ပစ္စည်းတွေ 
+(Variables) ကို သူရောက်တဲ့နေရာတိုင်းမှာ ပြန်ထုတ်သုံးလို့ ရနေတာမျိုး ဖြစ်ပါတယ်။
+
+
 ```
