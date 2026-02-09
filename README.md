@@ -1,6 +1,10 @@
 
 ## 📑 Table of Contents
 - [JavaScript Execution Model](#javaScript-execution-model)
+  - [Js Engine](#js-engine)
+  - [Web APIs](#web-apis)
+  - [Event Loop](#event-loop)
+  - [Callback Queue](#callback-queue)
 - [LexicalStructure](#LexicalStructure)
 - [Expressions](#Expressions)
 - [DataTypes](#DataTypes)
@@ -26,7 +30,7 @@
 
 <img width="691" height="478" alt="image" src="https://github.com/user-attachments/assets/7dd32f98-cae3-4ce2-9c47-967549653772" />
 
-## JS Engine
+## Js Engine
 
  JavaScript Engine ဆိုတာ JavaScript code တွေကို Machine Code (သို့) Bytecode အဖြစ် ပြောင်းပြီး execute လုပ်ပေးတဲ့ software program တစ်ခုဖြစ်ပါတယ်။
 
@@ -69,7 +73,8 @@ Large Data: Stack ထဲမှာ သိမ်းဖို့ အရွယ်အ
 
 ၃။ Allocation vs Garbage Collection
 
-Memory Allocation: Variable အသစ်တစ်ခု ဆောက်လိုက်တိုင်း Engine က Heap ထဲမှာ နေရာအလွတ်တစ်ခု ရှာပြီး သိမ်းပေးပါတယ်။
+Memory Allocation: Variable အသစ်တစ်ခု ဆောက်လိုက်တိုင်း Engine က Heap ထဲမှာ 
+နေရာအလွတ်တစ်ခု ရှာပြီး သိမ်းပေးပါတယ်။
 
 Garbage Collection: JavaScript မှာ Memory ကို ကိုယ်တိုင် ဖျက်ပေးစရာ မလိုပါဘူး။ 
 Engine ထဲမှာ Garbage Collector ဆိုတာ ပါပါတယ်။
@@ -90,7 +95,7 @@ Memory Address (Reference) လေးတစ်ခု ရလာပါတယ်။
 
 { name: "Aung Aung" } ဆိုတဲ့ object ကြီးက Heap ထဲ ရောက်သွားမယ်။
 
-user ဆိုတဲ့ variable နာမည်နဲ့ Address လေးကတော့ Call Stack ထဲမှာ ရှိနေပါမယ်။
+user ဆိုတဲ့ variable နာမည်နဲ့ အဲဒီ data ရှိရာနေရာကို ညွှန်ပြတဲ့ Memory Address (Reference)လေးကတော့ Call Stack ထဲမှာ ရှိနေပါမယ်။
 
 Memory Heap ထဲမှာ data တွေ အရမ်းများလာပြီး Garbage Collector ကလည်း
 မဖျက်ပေးနိုင်တဲ့အခါ Memory Leak (စက်လေးသွားတာမျိုး) ဖြစ်တတ်ပါတယ်။
@@ -154,7 +159,131 @@ Call Stack နဲ့ Event Loop
 Event Loop က Callback Queue ထဲမှာ စောင့်နေတဲ့ အလုပ်တွေကို Stack ထဲကို ပို့ပေးတာ ဖြစ်ပါတယ်။
 ```
 
-## LexicalStructure
+
+## Web APIs
+
+```
+Web APIs ဆိုတာ Browser (Web Runtime Environment) ကနေ ထောက်ပံ့ပေးထားတဲ့ 
+အပိုထည့်ပေးထားတဲ့ Features  ဖြစ်ပါတယ်။
+
+JavaScript က single-threaded ဖြစ်ပေမဲ့ နောက်ကွယ်မှာ အလုပ်တွေအများကြီးကို တစ်ပြိုင်နက်
+လုပ်ဆောင်နိုင်နေတာဟာ ဒီ Web APIs တွေကြောင့် ဖြစ်ပါတယ်။
+
+Web APIs ရဲ့ အဓိက တာဝန်များ
+
+ပုံထဲမှာ ပြထားတဲ့အတိုင်း Web APIs တွေဟာ Engine ရဲ့ အပြင်ဘက်မှာ သီးသန့် အလုပ်လုပ်ကြတာပါ။
+
+DOM (Document Object Model): JavaScript ကနေ HTML element တွေကို ရှာတာ၊ အရောင်ပြောင်းတာ၊ 
+စာသားအသစ် ထည့်တာတွေကို လုပ်ဆောင်ပေးပါတယ်။
+
+Timer (setTimeout/setInterval): သတ်မှတ်ထားတဲ့ အချိန်တစ်ခုအထိ စောင့်ဆိုင်းပေးတဲ့ အလုပ်ကို 
+လုပ်ဆောင်ပေးပါတယ်။
+
+Fetch APIs (Network Requests): Server ဆီကနေ data တွေ လှမ်းတောင်းတဲ့အခါ Browser ရဲ့ 
+Network thread ကို သုံးပြီး အလုပ်လုပ်ပေးပါတယ်။
+
+Other APIs: ပုံထဲမှာ ... လို့ ပြထားတဲ့အထဲမှာ Geolocation (တည်နေရာကြည့်ခြင်း)၊ 
+Local Storage နဲ့ Canvas လိုမျိုး APIs တွေလည်း ပါဝင်ပါတယ်။
+
+Web APIs က ဘယ်လို အလုပ်လုပ်သလဲ?
+
+၁။ Request: Call Stack ကနေ setTimeout ဒါမှမဟုတ် fetch လိုမျိုး function ကို ခေါ်လိုက်တဲ့အခါ 
+JS Engine က အဲဒီအလုပ်ကို Web APIs ဆီကို လွှဲပေးလိုက်ပါတယ်။
+
+၂။ Offloading: Web APIs က အဲဒီအလုပ်ကို Browser ရဲ့ အခြား thread တွေ (ဥပမာ Network thread 
+သို့မဟုတ် Timer thread) ကို သုံးပြီး နောက်ကွယ်မှာ သီးသန့် လုပ်ဆောင်ပါတယ်။
+
+၃။ Callback: အလုပ်ပြီးသွားတဲ့အခါ (ဥပမာ Timer ပြည့်သွားတဲ့အခါ) Web API က အဲဒီအလုပ်နဲ့ သက်ဆိုင်တဲ့
+Callback function ကို Callback Queue ထဲကို ပို့ပေးလိုက်ပါတယ်။
+
+ဘာကြောင့် အရေးကြီးတာလဲ?
+
+Web APIs မရှိဘူးဆိုရင် JavaScript ဟာ အရမ်း "နှေး" တဲ့ ဘာသာစကား ဖြစ်သွားပါလိမ့်မယ်။
+ဥပမာ- Server ကနေ data လာတာကို စောင့်နေတဲ့အချိန်မှာ Web API မရှိရင် Browser ကြီး တစ်ခုလုံး 
+ဘာမှလုပ်လို့မရဘဲ "Hang" နေမှာပါ။
+
+အခုတော့ Web APIs က နောက်ကွယ်မှာ အလုပ်လုပ်ပေးနေလို့ ကျနော်တို့ Browser မှာ UI တွေကို ဆက်ပြီး
+ အသုံးပြုနိုင်နေတာ ဖြစ်ပါတယ်။
+
+```
+## Event Loop
+```
+Event Loop ဆိုတာ JavaScript Runtime ရဲ့ "စပယ်ယာ" သို့မဟုတ် "ယာဉ်ထိန်းရဲ" လိုမျိုး အဓိကကျတဲ့
+အစိတ်အပိုင်းဖြစ်ပါတယ်။ သူက Call Stack နဲ့ Callback Queue တို့ကြားမှာ အလုပ်တွေကို ဘယ်အချိန်မှာ
+လုပ်ဆောင်ရမလဲဆိုတာကို အမြဲတမ်း စီစဉ်ပေးနေတာပါ။
+
+ပုံထဲက မြှားလေးကို ကြည့်ရင် Event Loop က အလုပ်တွေ လှည့်ပတ်နေပုံကို မြင်နိုင်ပါတယ်။
+
+Event Loop ရဲ့ အလုပ်လုပ်ပုံ အဆင့်ဆင့်
+
+Event Loop က အောက်ပါ အဆင့် ၃ ဆင့်ကို အမြဲတမ်း ထပ်ခါတလဲလဲ (Loop) ပတ်ပြီး လုပ်ဆောင်နေပါတယ်-
+
+၁။ Call Stack ကို စစ်ဆေးခြင်း
+Event Loop က Call Stack ထဲမှာ လက်ရှိ လုပ်နေတဲ့ code တွေ ရှိသေးလားဆိုတာကို အရင်ကြည့်ပါတယ်။
+ အကယ်၍ Stack ထဲမှာ function တစ်ခုခု အလုပ်လုပ်နေတုန်းဆိုရင် သူက ဘာမှ ထပ်မလုပ်ဘဲ စောင့်နေပါတယ်။
+
+၂။ Callback Queue ကို ကြည့်ခြင်း
+Call Stack ထဲမှာ ဘာအလုပ်မှ မရှိတော့ဘူး (လွတ်သွားပြီ) ဆိုတာနဲ့ Event Loop က Callback Queue ဘက်ကို
+လှည့်ကြည့်ပါတယ်။ Queue ထဲမှာ Web APIs ဆီကနေ ပြီးစီးလို့ ရောက်လာတဲ့ callback အလုပ်တွေ 
+(ဥပမာ- click, timer, data) ရှိနေသလားလို့ စစ်ပါတယ်။
+
+၃။ အလုပ်ကို လွှဲပြောင်းပေးခြင်း (The Push)
+Queue ထဲမှာ အလုပ်ရှိနေရင် Event Loop က အဲဒီထဲက ပထမဆုံးအလုပ်ကို ယူပြီး Call Stack ထဲကို 
+တွန်းတင် (Push) ပေးလိုက်ပါတယ်။ အဲဒီအခါမှသာ အဲဒီ callback function က တကယ် အလုပ်လုပ်တာဖြစ်ပါတယ်။
+
+ဘာကြောင့် Event Loop က အရေးကြီးတာလဲ?
+
+JavaScript က Single-threaded ဖြစ်ပေမဲ့ "မထစ်" ဘဲ အလုပ်လုပ်နိုင်တာဟာ ဒီ Event Loop ကြောင့်ပါ။
+
+Non-blocking: setTimeout သို့မဟုတ် fetch လိုမျိုး ကြာမယ့်အလုပ်တွေကို Web APIs ဆီ လွှဲပေးထားနိုင်လို့ UI က 
+ပုံမှန်အတိုင်း အလုပ်လုပ်နေနိုင်တာပါ။
+
+Concurrency: အလုပ်တွေကို တစ်ပြိုင်နက် လုပ်နေသလိုမျိုး ခံစားရစေပါတယ်။ တကယ်တော့ နောက်ကွယ်မှာ 
+Web APIs တွေက အလုပ်လုပ်ပေးနေပြီး Event Loop က အဖြေတွေကို အစီအစဉ်တကျ ပြန်စီပေးနေတာ ဖြစ်ပါတယ်။
+
+```
+## Callback Queue
+
+```
+Callback Queue (သို့မဟုတ် Task Queue) ဆိုတာ Web APIs တွေဆီကနေ အလုပ်ပြီးစီးလို့ 
+ပြန်လာတဲ့ function လေးတွေ Call Stack ထဲကို ပြန်ဝင်ဖို့အတွက် စောင့်ဆိုင်းရတဲ့ "တန်းစီဇယား" နေရာဖြစ်ပါတယ်။
+
+ပုံထဲက JS Runtime Environment ရဲ့ ညာဘက်အောက်ခြေမှာ click, timer, data စတဲ့ 
+အလုပ်လေးတွေ တန်းစီနေတဲ့ နေရာပဲ ဖြစ်ပါတယ်။
+
+၁။ Callback Queue ထဲကို ဘယ်လိုရောက်လာသလဲ?
+အလုပ်တစ်ခုက Callback Queue ထဲကို တိုက်ရိုက်မရောက်ပါဘူး။ အဆင့်ဆင့် ဖြတ်သန်းရပါတယ်:
+
+Web APIs ကနေ တဆင့်လာခြင်း: ဥပမာ- setTimeout ရဲ့ timer ပြည့်သွားတဲ့အခါ သို့မဟုတ် fetch ကနေ 
+data ရလာတဲ့အခါ အဲဒီအလုပ်နဲ့ သက်ဆိုင်တဲ့ callback function ကို Web API က Queue ထဲကို ပို့ပေးလိုက်တာပါ။
+
+Events များ: User က ခလုတ်တစ်ခုကို နှိပ်လိုက်ရင် (click) အဲဒီ click event အတွက် ရေးထားတဲ့ function က 
+Queue ထဲမှာ လာပြီး တန်းစီပါတယ်။
+
+၂။ FIFO (First In, First Out) စနစ်
+Callback Queue ဟာ FIFO စနစ်နဲ့ အလုပ်လုပ်ပါတယ်။ မှတ်တိုင်မှာ လူတွေ တန်းစီသလိုမျိုး 
+အရင်ရောက်တဲ့ အလုပ်က အရင်ဆုံး ပြန်ထွက်ခွင့် ရပါတယ်။ Call Stack ရဲ့ LIFO စနစ်နဲ့ ဆန့်ကျင်ဘက်ပါ။
+
+၃။ Event Loop နဲ့ ချိတ်ဆက်ပုံ
+Callback Queue ထဲမှာ အလုပ်တွေ ဘယ်လောက်ပဲ ရှိနေပါစေ၊ သူတို့က Call Stack ထဲကို တန်းပြီး ဝင်လို့မရပါဘူး။
+
+Event Loop က Call Stack ကို အမြဲကြည့်နေပြီး Stack လုံးဝ အားသွားပြီဆိုမှ Queue ထဲက အလုပ်တွေကို 
+တစ်ခုချင်းစီ Stack ထဲကို ပို့ပေးတာဖြစ်ပါတယ်။
+
+Callback Queue အမျိုးအစားများ (The Priority)
+တကယ်တော့ Browser ထဲမှာ Queue က တစ်ခုတည်း မဟုတ်ပါဘူး။ ဦးစားပေးအဆင့် (Priority) ကွာခြားမှု ရှိပါတယ်:
+
+Microtask Queue (Promises): Promise.then() ဒါမှမဟုတ် async/await တွေအတွက်ပါ။ သူက ဦးစားပေး အမြင့်ဆုံးပါ။
+
+Callback Queue (Macrotask): setTimeout, setInterval နဲ့ DOM events တွေအတွက်ပါ။
+
+ဥပမာ: Timer အလုပ်နဲ့ Promise အလုပ် နှစ်ခုစလုံး Queue ထဲမှာ တန်းစီနေရင် Event Loop က Promise အလုပ်
+ (Microtask) ကို အရင်ယူပြီးမှ Timer အလုပ်ကို လုပ်ဆောင်ပေးမှာ ဖြစ်ပါတယ်။
+```
+
+
+
+# LexicalStructure
 
 JavaScript's **lexical structure** describes the basic building blocks of the language — the rules for writing code, forming tokens, naming variables, writing comments, and more. This document explains each part clearly.
 
@@ -933,7 +1062,7 @@ Reference (Objects) တွေက ရှုပ်ထွေးပြီး Memory 
 
 JavaScript has **8 main data types**:
 
-### **Primitive Data Types** (7 types)
+ **Primitive Data Types** (7 types)
 
 1. **Number**
 2. **String**
@@ -943,7 +1072,7 @@ JavaScript has **8 main data types**:
 6. **Symbol**
 7. **BigInt**
 
-### **Non‑Primitive Data Type** (1 type)
+**Non‑Primitive Data Type** (1 type)
 
 8. **Object**
 
@@ -1061,6 +1190,8 @@ BigInts cannot mix with normal numbers:
 ```
 
 ---
+
+
 
 # 3. Non‑Primitive Data Type
 
@@ -5168,44 +5299,39 @@ console.log(url.searchParams.get("id"));
 
 #  Hoisting
 
-Hoisting is a JavaScript behavior where variable and function declarations are moved to the top of their scope during the compilation phase.
+```
+Hoisting ဆိုတာ JavaScript မှာ variable တွေနဲ့ function တွေကို code မ run ခင် 
+(Execution context တည်ဆောက်တဲ့အချိန်) memory ထဲမှာ နေရာကြိုယူထားတဲ့ သဘောတရားဖြစ်ပါတယ်။
+
+ရိုးရိုးရှင်းရှင်းပြောရရင် သင်က variable တစ်ခုကို မကြေညာခင် (Declare မလုပ်ခင်) အပေါ်ကနေ လှမ်းသုံးလိုက်ရင်တောင် 
+JavaScript က error မတက်စေဘဲ variable declaration ကို code ရဲ့ ထိပ်ဆုံးကို ဆွဲတင်လိုက်သလိုမျိုး ပြုမူတာကို ခေါ်တာပါ။
+
+၁။ Function Hoisting
+Function တွေက Hoisting မှာ အထူးအခွင့်အရေးရပါတယ်။ Function တစ်ခုလုံးကို memory ထဲ ကြိုတင်သိမ်းထားတဲ့အတွက် 
+သူ့ကို မရေးခင် (အပေါ်ကနေ) လှမ်းခေါ်လို့ ရပါတယ်။
 
 
-⚠️ Important:
-
-JavaScript hoists declarations, not initializations.
-
-
-## Function Hoisting
-
-Function Declaration (Hoisted ✅)
-
-```js
-sayHello();
+sayHello(); // အလုပ်လုပ်တယ်: "မင်္ဂလာပါ"
 
 function sayHello() {
-  console.log("Hello!");
+  console.log("မင်္ဂလာပါ");
 }
 
+
+၂။ Variable Hoisting (var, let, const)
+
+Variable တွေမှာတော့ သူတို့ကို ကြေညာတဲ့ keyword ပေါ်မူတည်ပြီး အလုပ်လုပ်ပုံ ကွာခြားပါတယ်။
+
+var: Hoisting ဖြစ်ပါတယ်။ ဒါပေမဲ့ variable ရဲ့ တန်ဖိုး (value) ကိုတော့ မသိသေးဘဲ undefined အဖြစ်ပဲ မှတ်ထားပါတယ်။
+
+let နှင့် const: သူတို့လည်း Hoisting ဖြစ်ပါတယ်။ ဒါပေမဲ့ သူတို့ကို memory ထဲမှာ နေရာယူထားရုံပဲ ရှိပြီး code က သူတို့ဆီ မရောက်မချင်း အသုံးပြုခွင့် မပေးပါဘူး။ ဒါကို Temporal Dead Zone (TDZ) လို့ ခေါ်ပါတယ်။
+
+
 ```
-✅ This works because function declarations are fully hoisted.
 
----
-
-## Function Expression (Not Hoisted ❌)
-
-```js
-sayHello();
-
-const sayHello = function () {
-  console.log("Hello!");
-};
-```
-ReferenceError: Cannot access 'sayHello' before initialization
-
----
-
-
-
-## Variable Hoisting
+| Keyword        | 	Hoisted ဖြစ်လား	    |   တန်ဖိုး (Initial Value)       |     	Error တက်လား              |
+|----------------|---------------------|-------------------------------|----------------------------------|
+| var	           |     ဖြစ်တယ်         |    undefined	                  |        မတက်ဘူး(undefined ပြမယ်) |
+|                |                     |                               |                                  |
+| let / const	   |     ဖြစ်တယ်	       |        မရှိဘူး (Uninitialized)   |    	ReferenceError တက်မယ်       |
 
