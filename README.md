@@ -32,6 +32,7 @@
 ## JavaScript Execution Model
 
 <img width="691" height="478" alt="image" src="https://github.com/user-attachments/assets/7dd32f98-cae3-4ce2-9c47-967549653772" />
+[UsefulLink](https://playcode.io/javascript)
 
 ## Js Engine
 
@@ -5430,8 +5431,8 @@ Block Scope: အိမ်ထဲကမှ "သေတ္တာအသေးလေ�
 
 ```
 Scope Chain ဆိုတာ JavaScript မှာ variable တစ်ခုကို ရှာဖွေတဲ့ "လှေကားထစ်" လိုမျိုး စနစ်တစ်ခု ဖြစ်ပါတယ်။
- လက်ရှိရှိနေတဲ့ နေရာမှာ variable ကို ရှာလို့မတွေ့ရင် သူ့ရဲ့ အပြင်ဘက် (Parent Scope) ဆီကို အဆင့်ဆင့် 
- တက်ရှာသွားတဲ့ ဖြစ်စဉ်ကို ခေါ်တာပါ။
+လက်ရှိရှိနေတဲ့ နေရာမှာ variable ကို ရှာလို့မတွေ့ရင် သူ့ရဲ့ အပြင်ဘက် (Parent Scope) ဆီကို အဆင့်ဆင့် 
+တက်ရှာသွားတဲ့ ဖြစ်စဉ်ကို ခေါ်တာပါ။
 
 ဒီ concept ကို နားလည်ဖို့ Scopes အမျိုးအစားတွေကို အရင်သိထားဖို့ လိုပါတယ်။
 
