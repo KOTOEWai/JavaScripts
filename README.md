@@ -7,57 +7,40 @@ JavaScript ရဲ့ အခြေခံကနေ Advanced concepts တွေအ�
 
 ## 📑 Table of Contents
 
-### 1. 🏗️ JavaScript Execution Model
-* [JS Engine & Runtime](#)
-* [Web APIs & Event Loop](#)
-* [Callback Queue](#)
-
-### 2. 🧱 Fundamentals
-* [Lexical Structure](./01-Foundations/LexicalStructure.js)
-* [Variables (let, const, var)](./01-Foundations/Variables.js)
-* [Data Types & Type Casting](./01-Foundations/DataTypes.js)
-* [Operators & Expressions](./01-Foundations/Operators.js)
-
-### 3. 🔄 Control Flow
-* [Conditions (if-else, switch)](./02-Control-Flow/Conditions.js)
-* [Loops (for, while, do-while)](./02-Control-Flow/Loops.js)
-* [Error Handling (try-catch)](./02-Control-Flow/ErrorHandling.js)
-
-### 4. 🧠 Functions & Scope
-* [Function Declarations & Expressions](./04-Functions-And-Scope/Functions.js)
-* [Hoisting & Scope Chain](./04-Functions-And-Scope/Hoisting.js)
-* [Lexical Scoping & Closures](./04-Functions-And-Scope/Closures.js)
-
-### 5. 📦 Data Structures
-* [Arrays & Methods](./03-Data-Structures/Arrays.js)
-* [Objects & JSON](./03-Data-Structures/Objects.js)
-
-### 6. ⚡ Modern JavaScript (ES6+)
-* [Arrow Functions & Destructuring](./06-Modern-JavaScript-ES6+/Destructuring.js)
-* [Spread & Rest Operators](./06-Modern-JavaScript-ES6+/SpreadRest.js)
-* [Modules (Import/Export)](./06-Modern-JavaScript-ES6+/Modules/)
-
-### 7. ⏳ Asynchronous JavaScript
-* [Promises](./07-Asynchronous-JS/Promises.js)
-* [Async/Await](./07-Asynchronous-JS/AsyncAwait.js)
-* [Fetch API](./07-Asynchronous-JS/FetchAPI.js)
-
-### 8. 🏛️ Object-Oriented Programming (OOP)
-* [Classes & Inheritance](./08-Object-Oriented-Programming/Classes.js)
-* [SOLID Principles](./08-Object-Oriented-Programming/SOLID-Principles-Lab.js)
+- [JavaScript Execution Model](#javaScript-execution-model)
+  - [Js Engine](#js-engine)
+  - [Web APIs](#web-apis)
+  - [Event Loop](#event-loop)
+  - [Callback Queue](#callback-queue)
+ 
+- [LexicalStructure](#LexicalStructure)
+- [Expressions](#Expressions)
+- [DataTypes](#DataTypes)
+- [Variables](#Variables)
+- [Operators](#Operators)
+- [Conditions](#Conditions)
+- [Loops](#Loops)
+- [Functions](#Functions)
+- [Objects](#Objects)
+- [Arrays](#Arrays)
+- [Asynchronous](#Asynchronous-JavaScript)
+- [TypeCasting](#TypeCasting)
+- [Modules](#Modules)
+- [ErrorHandling](#ErrorHandling)
+- [OOP](#OOPConpects)
+- [JSON](#JSON)
+- [FetchAPI](#FetchAPI)
+- [ES6+(Modern JavaScript)](#ES6)
+- [Hoisting](#Hoisting)
+- [Scope](#scope)
+- [Scope Chain](#scope-chain)
+- [Lexical Scoping](#lexical-scoping)
+- [Closure](#closure)
+---
+ ## 🔗 Useful Links
+* <a href="https://preparefrontend.com/blog/blog/25-javascript-best-practices-for-modern-development" title="25 JavaScript Best Practices for Modern Development">25 JavaScript Best Practices for Modern Development</a>
 
 ---
-
-## 🔗 Useful Links
-* [25 JavaScript Best Practices for Modern Development](https://preparefrontend.com/blog/blog/25-javascript-best-practices-for-modern-development)
-* [MDN Web Docs - JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-
----
-
-
----
-# useful Links
-<a href="https://preparefrontend.com/blog/blog/25-javascript-best-practices-for-modern-development" title="25 JavaScript Best Practices for Modern Development">25 JavaScript Best Practices for Modern Development</a>
 
 
 ## JavaScript Execution Model
